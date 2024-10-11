@@ -15,14 +15,13 @@
      font-size: 12px;
     }
     
-    .applet-flex-container > div{
+    .applet-container > div{
         margin-left: .5rem;
         margin-top: .5rem;
     }
-    
-    .applet-card{
-        width: 18rem;
-        height: 12rem;
+    .applet3{
+        margin-top: 5rem;
+        margin-left: 5rem;
     }
     </style>
         
@@ -42,7 +41,6 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="applet1.html">Applet 1</a></li>
-              <li><a class="dropdown-item" href="applet2.html">Applet 2</a></li>
               <li><a class="dropdown-item" href="applet3.js">Applet 3</a></li>
               <li><hr class="dropdown-divider"></li>           
             </ul>
@@ -68,6 +66,28 @@
        <h2>Collected Data:</h2>
        <div id="cardContainer" style="width:20rem"></div>
       </div>
+
+      <script>
+        let logCount = 0;
+        
+        document.getElementById("logButton").addEventListener("click", function() {
+            logCount++;
+            document.getElementById("logCount").textContent = "Total Logs: " + logCount;
+            
+            const cardContainer = document.getElementById("cardContainer");
+            const logEntry = document.createElement("div");
+            logEntry.className = "card mb-2";
+            logEntry.innerHTML = `<div class="card-body">Log Entry ${logCount}</div>`;
+            cardContainer.appendChild(logEntry);
+        });
+    
+        document.getElementById("clearButton").addEventListener("click", function() {
+            logCount = 0;
+            document.getElementById("logCount").textContent = "Total Logs: " + logCount;
+            document.getElementById("cardContainer").innerHTML = '';
+        });
+    </script>
+    
     
 </body>
 </html>
