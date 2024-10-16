@@ -30,4 +30,4 @@ class LeafletMap {
 }
 
 const myMap = new LeafletMap('map', [45.4215, -75.6972], 5);
-myMap.loadMarkersFromJson('');
+myMap.loadMarkersFromJson('applet2.json');
