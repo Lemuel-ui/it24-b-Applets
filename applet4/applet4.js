@@ -25,7 +25,7 @@ class StudentList {
         targetContainer.innerHTML = students.map(student => 
             `<button class="btn btn-primary" style="margin-top:15px; 
                                                     width:25rem">
-                ${student.student_name} | ${student.student_age}  | program: ${student.program} | Year Level: ${student.yearLevel}
+                 ${student.student_name} | Age: ${student.student_age} | Program: ${student.program} | Year Level: ${student.yearLevel}
             </button><br>`
         ).join('');
     }
@@ -43,14 +43,13 @@ class StudentList {
 
     filterStudents(query, searchListContainer) {
         const filteredStudents = this.students.filter(student => {
-            const fullName = `${student.student_name} ${student.student_program} ${student.age} ${student.yearLevel}`;
+            console.log(student); 
             return fullName.toLowerCase().includes(query.toLowerCase());
         });
 
         const studentsToRender = query ? filteredStudents : this.students;
-
         this.renderStudentList(studentsToRender, searchListContainer);
     }
 }
 
-const studentList = new StudentList('');
+const studentList = new StudentList('applet4.json');
