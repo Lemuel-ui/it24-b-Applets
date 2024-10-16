@@ -1,0 +1,26 @@
+[
+    {
+        "student_name": "Wayne Barb",
+        "student_age": "19",
+        "student_program": "computer science",
+        "student_yearlevel": "First Year"
+    },
+    {
+        "student_name": "Hello Kitty",
+        "student_age": "25",
+        "student_program": "Multimedia",
+        "student_yearlevel": "fourth year"
+    },
+    {
+        "student_name": "Lee Avos",
+        "student_age": "21",
+        "student_program": "business ad",
+        "student_yearlevel": "second year"
+    },
+    {
+        "student_name": "Lemon C2",
+        "student_age": "23",
+        "student_program": "electrical engineering",
+        "student_yearlevel": "third year"
+    }
+]
