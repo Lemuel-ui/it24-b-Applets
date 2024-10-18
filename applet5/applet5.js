@@ -39,3 +39,90 @@ class WeatherApp {
         this.weatherCard.style.display = 'block';
     }
 }
+
+class WeatherService extends WeatherApp {
+    async fetchWeather() {
+        const apiKey = this.apiKeyInput.value.trim();
+        const city = this.cityInput.value.trim();
+
+        if (!apiKey) {
+            alert('Please enter your API key.');
+            return;
+        }
+
+        if (!city) {
+            alert('Please enter a city name.');
+            return;
+        }
+
+        const data = await this.getWeatherData(city, apiKey);
+        if (data) {
+            this.displayWeather(data);
+        } else {
+            alert('City not found. Please try again.');
+        }
+    }
+
+    async fetchWeatherByLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    const { latitude, longitude } = position.coords;
+                    const apiKey = this.apiKeyInput.value.trim();
+                    const data = await this.getWeatherDataByCoordinates(latitude, longitude, apiKey);
+
+                    if (data) {
+                        this.displayWeather(data);
+                        this.cityInput.value = '';
+                    } else {
+                        alert('Unable to retrieve weather data for your location.');
+                    }
+                },
+                () => {
+                    alert('Unable to retrieve your location. Please allow location access.');
+                }
+            );
+        } else {
+            alert('Geolocation is not supported by this browser.');
+        }
+    }
+
+    async getWeatherData(city, apiKey) {
+        try {
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
+            if (response.ok) {
+                return await response.json();
+            }
+        } catch (error) {
+            console.error('Error fetching weather data:', error);
+        }
+        return null;
+    }
+
+    async getWeatherDataByCoordinates(latitude, longitude, apiKey) {
+        try {
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`);
+            if (response.ok) {
+                return await response.json();
+            }
+        } catch (error) {
+            console.error('Error fetching weather data by coordinates:', error);
+        }
+        return null;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const weatherApp = new WeatherService();
+    
+    // Modal Initialization
+    const modalElement = document.getElementById('exampleModal');
+    if (modalElement) {
+        const modalInstance = new bootstrap.Modal(modalElement);
+        
+        // Optionally show the modal
+        modalInstance.show();
+    } else {
+        console.error('Modal element not found');
+    }
+});
