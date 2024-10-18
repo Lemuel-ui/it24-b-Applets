@@ -1,16 +1,10 @@
 class WeatherApp {
     constructor() {
-        // API Key
-        this.apiKeyInput = document.getElementById('apiKeyInput');
 
-        // Text Input
+        this.apiKeyInput = document.getElementById('apiKeyInput');
         this.cityInput = document.getElementById('cityInput');
         this.getWeatherBtn = document.getElementById('getWeatherBtn');
-
-        // Geolocation Input
         this.getLocationBtn = document.getElementById('getLocationBtn');
-
-        // Weather Card
         this.weatherCard = document.getElementById('weatherCard');
         this.cityName = document.getElementById('cityName');
         this.temperature = document.getElementById('temperature');
@@ -18,8 +12,6 @@ class WeatherApp {
         this.humidity = document.getElementById('humidity');
         this.windSpeed = document.getElementById('windSpeed');
         this.weatherIcon = document.getElementById('weatherIcon');
-
-        // Event Listeners
         this.getWeatherBtn.addEventListener('click', () => this.fetchWeather());
         this.getLocationBtn.addEventListener('click', () => this.fetchWeatherByLocation());
     }
@@ -114,13 +106,11 @@ class WeatherService extends WeatherApp {
 
 document.addEventListener('DOMContentLoaded', () => {
     const weatherApp = new WeatherService();
-    
-    // Modal Initialization
+
     const modalElement = document.getElementById('exampleModal');
     if (modalElement) {
         const modalInstance = new bootstrap.Modal(modalElement);
         
-        // Optionally show the modal
         modalInstance.show();
     } else {
         console.error('Modal element not found');
