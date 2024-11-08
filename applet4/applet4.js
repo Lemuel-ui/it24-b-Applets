@@ -1,5 +1,5 @@
 class StudentList {
-    
+
     constructor(dataUrl) {
         this.dataUrl = dataUrl;
         this.students = [];
@@ -8,7 +8,6 @@ class StudentList {
 
     async init() {
         await this.fetchData();
-        this.renderStudentList(this.students, document.getElementById('studentList')); 
         this.bindSearchEvent();
     }
 
@@ -26,8 +25,7 @@ class StudentList {
             `<button class="btn btn-primary" style="margin-top:15px; 
                                                     width:25rem">
                  ${student.student_name} | Age: ${student.student_age} | Program: ${student.program} | Year Level: ${student.yearLevel}
-            </button><br>`
-        ).join('');
+            </button><br>`).join('');
     }
 
     bindSearchEvent() {
@@ -43,8 +41,7 @@ class StudentList {
 
     filterStudents(query, searchListContainer) {
         const filteredStudents = this.students.filter(student => {
-            console.log(student); 
-            return fullName.toLowerCase().includes(query.toLowerCase());
+            return student.student_name.toLowerCase().includes(query.toLowerCase());
         });
 
         const studentsToRender = query ? filteredStudents : this.students;
